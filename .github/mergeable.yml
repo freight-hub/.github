@@ -8,6 +8,6 @@ mergeable:
     validate:
       - do: description
         must_include:
-          regex: '((?<!([A-Z]{1,10})-?)[A-Z]+-\d+)'
+          regex: '((?<!([A-Z]{1,10})-?)[A-Z]+\d?-\d+)'
           message: 'Must include Jira ticket'
 
