@@ -8,6 +8,6 @@ mergeable:
     validate:
       - do: description
         must_include:
-          regex: '((?<!([A-Z]{1,10})-?)[A-Z]+-\d+)'
+          regex: 'https://forto.atlassian.net/\w+/[A-Z][A-Z0-9]+-\d+'
           message: 'Must include Jira ticket'
 
