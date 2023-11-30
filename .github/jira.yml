@@ -1,0 +1,17 @@
+name: Must include JIRA ticket
+on: pull_request
+
+jobs:
+  validate-pr:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Validate PR Description
+      if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
+      run: |
+        DESCRIPTION=$(jq -r .pull_request.body "$GITHUB_EVENT_PATH")
+        echo "Pull Request Description: $DESCRIPTION"
+        if ! echo "$DESCRIPTION" | perl -0777 -ne 'exit 1 if not /[A-Z]{1,10}\d*\-\d+/'
+        then
+            echo "Must include JIRA ticket"
+            exit 1
+        fi
